@@ -1,5 +1,5 @@
 GEM_NAME = "totaltime"
-GEM_VERSION = "0.1.2"
+GEM_VERSION = "0.1.3"
 
 task :default => :build
 
