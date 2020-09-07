@@ -8,7 +8,7 @@ require "duration.rb"
 class CLI
     def self.run
         OptionParser.new do |parser| 
-            parser.banner = "Usage: timesheet [options]"
+            parser.banner = "Usage: totaltime [options]"
 
             parser.on("-h", "--help", "Show this help message") do ||
                 puts parser
