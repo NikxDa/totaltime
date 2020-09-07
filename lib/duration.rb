@@ -32,15 +32,14 @@ class Duration
         end
 
         parts=str.split(":")
-        
         return unless parts.length == 2
-        
+
         parsedHours = Integer(parts[0], exception: false)
         parsedMinutes = Integer(parts[1], exception: false)
 
-        parsedHours = parsedHours + (parsedMinutes / 60) if parsedHours != nil && parsedMinutes != nil
-        parsedHours = (parsedMinutes / 60) if parsedHours == nil && parsedMinutes != nil
-        return unless parsedHours != nil && parsedMinutes != nil
+        return if parsedMinutes == nil
+        parsedHours = 0 if parsedHours == nil
+        parsedHours = parsedHours + (parsedMinutes / 60)
 
         parsedMinutes = parsedMinutes % 60
         
