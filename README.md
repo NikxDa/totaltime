@@ -2,17 +2,14 @@
 > A beautiful time calculation CLI 
 
 <div align="center">
-    <img alt="Header" src="images/pino-minimal.png" width="85%">
+    <img alt="Header" src="images/totaltime.gif" width="60%">
 </div>
 
-<p align="center">
-    <a href="https://travis-ci.org/NikxDa/pino-minimal">
-        <img alt="Travis Build Status" src="https://travis-ci.org/NikxDa/pino-minimal.svg?branch=master">
+<!-- <p align="center">
+    <a href="https://travis-ci.org/NikxDa/...">
+        <img alt="Travis Build Status" src="https://travis-ci.org/NikxDa/....svg?branch=master">
     </a>
-    <a href="https://www.npmjs.com/package/pino-minimal">
-        <img alt="NPM version" src="https://img.shields.io/npm/v/pino-minimal">
-    </a>
-</p>
+</p> -->
 
 ## Description
 
