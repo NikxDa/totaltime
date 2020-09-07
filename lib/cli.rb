@@ -25,21 +25,25 @@ class CLI
         prompt = "> ".light_black
         promptOverride = lineUp + "\r" + lineClear + prompt
 
-        while line = Readline.readline(prompt, true)
-            if line.empty?
-                print lineUp
-                break
-            end
+        begin
+            while line = Readline.readline(prompt, true)
+                if line.empty?
+                    print lineUp
+                    break
+                end
 
-            duration = Duration.try_convert(line)
-            
-            if duration != nil
-                totalDuration += duration
-                puts promptOverride + duration.to_s.green
-            elsif
-                invalidText = (line + " [Invalid]").red
-                puts promptOverride + invalidText
+                duration = Duration.try_convert(line)
+                
+                if duration != nil
+                    totalDuration += duration
+                    puts promptOverride + duration.to_s.green
+                elsif
+                    invalidText = (line + " [Invalid]").red
+                    puts promptOverride + invalidText
+                end
             end
+        rescue Interrupt => e
+            puts "[Interrupt]".red
         end
 
         puts "Total time: ".light_black + totalDuration.to_s.cyan

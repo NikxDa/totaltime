@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name          = "totaltime"
-    s.version       = "0.1.1"
+    s.version       = "0.1.2"
     s.date          = "2020-09-07"
     s.summary       = "CLI timesheet calculator"
     s.description   = "A beautiful timesheet calculator for the command line"
