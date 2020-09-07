@@ -35,6 +35,22 @@ class TestSimpleNumber < Test::Unit::TestCase
         assert_instance_of(Duration, dur)
         assert_equal(dur.hours, 1)
         assert_equal(dur.minutes, 35)
+
+        parseStr = "2:90"
+        dur = Duration.try_convert(parseStr)
+
+        assert_not_nil(dur)
+        assert_instance_of(Duration, dur)
+        assert_equal(dur.hours, 3)
+        assert_equal(dur.minutes, 30)
+
+        parseStr = "01:60"
+        dur = Duration.try_convert(parseStr)
+
+        assert_not_nil(dur)
+        assert_instance_of(Duration, dur)
+        assert_equal(dur.hours, 2)
+        assert_equal(dur.minutes, 0)
     end
 
     def test_colon_parse
