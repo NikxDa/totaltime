@@ -25,8 +25,16 @@ The `totaltime` tool provides a quick and easy way to complete timesheet calcula
 
 ## Installation
 
+### Via RubyGems
+
 ```bash
 $ gem install totaltime
+```
+
+### Via GitHub Packages
+
+```bash
+$ gem install totaltime --source "https://rubygems.pkg.github.com/nikxda"
 ```
 
 ## Usage
