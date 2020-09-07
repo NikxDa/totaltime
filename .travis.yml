@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+    - 2.6
+install: 
+    - gem install colorize
+script:
+    - rake test

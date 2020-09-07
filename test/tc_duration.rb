@@ -1,4 +1,4 @@
-require "../lib/duration.rb"
+require "duration.rb"
 
 class TestSimpleNumber < Test::Unit::TestCase
     def test_creation

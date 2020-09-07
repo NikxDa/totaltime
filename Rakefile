@@ -19,3 +19,7 @@ end
 task :clean do
   system "rm *.gem"
 end
+
+task :test do
+  system "ruby test/ts_all.rb"
+end
