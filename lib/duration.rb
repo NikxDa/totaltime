@@ -38,8 +38,10 @@ class Duration
         parsedHours = Integer(parts[0], exception: false)
         parsedMinutes = Integer(parts[1], exception: false)
 
-        parsedHours = 0 if parsedHours == nil && parsedMinutes != nil
+        parsedHours = (parsedMinutes / 60) if parsedHours == nil && parsedMinutes != nil
         return unless parsedHours != nil && parsedMinutes != nil
+
+        parsedMinutes = parsedMinutes % 60
         
         newDuration = Duration.new(parsedHours, parsedMinutes)
         if newDuration.valid? then newDuration else nil end
