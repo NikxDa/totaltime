@@ -13,6 +13,7 @@ end
 
 task :publish => :build do
   system 'gem push ' + GEM_NAME + "-" + GEM_VERSION + ".gem"
+  system 'gem push --key github --host https://rubygems.pkg.github.com/NikxDa ' + GEM_NAME + "-" + GEM_VERSION + ".gem"
 end
 
 task :clean do
