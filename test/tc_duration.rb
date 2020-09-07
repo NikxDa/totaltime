@@ -69,6 +69,11 @@ class TestSimpleNumber < Test::Unit::TestCase
         assert_instance_of(Duration, dur)
         assert_equal(dur.hours, 1)
         assert_equal(dur.minutes, 30)
+
+        parseStr = "1:"
+        dur = Duration.try_convert(parseStr)
+
+        assert_nil(dur)
     end
 
     def test_float_parse
