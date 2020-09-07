@@ -1,6 +1,7 @@
 require "optparse"
 require "tempfile"
 require "readline"
+require "colorize"
 
 require "./duration.rb"
 
@@ -13,16 +14,30 @@ OptionParser.new do |parser|
     end
 end.parse!
 
-puts "Press [Enter] on an empty line to confirm"
+puts "Press [Enter] on an empty line to confirm".light_black
 totalDuration = Duration.new
 
-while line = Readline.readline("> ", true)
+lineUp = "\033[1A"
+lineClear = "\033[K"
+
+prompt = "> ".light_black
+promptOverride = lineUp + "\r" + lineClear + prompt
+
+while line = Readline.readline(prompt, true)
     if line.empty?
-        print "\033[1A"
+        print lineUp
         break
     end
+
     duration = Duration.try_convert(line)
-    totalDuration += duration if duration != nil
+    
+    if duration != nil
+        totalDuration += duration
+        puts promptOverride + duration.to_s.green
+    elsif
+        invalidText = (line + " [Invalid]").red
+        puts promptOverride + invalidText
+    end
 end
 
-puts "Total time: #{totalDuration}"
+puts "Total time: ".light_black + totalDuration.to_s.cyan

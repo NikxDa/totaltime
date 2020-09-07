@@ -11,14 +11,26 @@ class Duration
     end
 
     def valid?
-        @hours >= 0 && @hours <= 24 && @minutes >= 0 && @minutes <= 60
+        @hours >= 0 && @minutes >= 0 && @minutes <= 59
     end
 
     def +(duration)
-        Duration.new(@hours + duration.hours, @minutes + duration.minutes)
+        newMinutes = (@minutes + duration.minutes) % 60
+        newHours = @hours + duration.hours + (@minutes + duration.minutes) / 60
+        Duration.new(newHours, newMinutes)
     end
 
     def self.try_convert(str)
+        floatValue = Float(str, exception: false)
+        if floatValue
+            parsedMinutes = floatValue * 60
+            parsedHours = (parsedMinutes / 60).floor
+            parsedMinutes = parsedMinutes % 60
+
+            newDuration = Duration.new(parsedHours, parsedMinutes.round)
+            return newDuration if newDuration.valid?
+        end
+
         parts=str.split(":")
         
         return unless parts.length == 2
@@ -26,6 +38,7 @@ class Duration
         parsedHours = Integer(parts[0], exception: false)
         parsedMinutes = Integer(parts[1], exception: false)
 
+        parsedHours = 0 if parsedHours == nil && parsedMinutes != nil
         return unless parsedHours != nil && parsedMinutes != nil
         
         newDuration = Duration.new(parsedHours, parsedMinutes)
