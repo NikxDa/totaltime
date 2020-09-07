@@ -5,11 +5,11 @@
     <img alt="Header" src="images/totaltime.gif" width="60%">
 </div>
 
-<!-- <p align="center">
-    <a href="https://travis-ci.org/NikxDa/...">
-        <img alt="Travis Build Status" src="https://travis-ci.org/NikxDa/....svg?branch=master">
+<p align="center">
+    <a href="https://travis-ci.org/NikxDa/totaltime">
+        <img alt="Travis Build Status" src="https://travis-ci.org/NikxDa/totaltime.svg?branch=master">
     </a>
-</p> -->
+</p>
 
 ## Description
 
