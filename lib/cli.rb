@@ -3,10 +3,11 @@ require "tempfile"
 require "readline"
 require "colorize"
 
-require "duration.rb"
+require_relative "./duration.rb"
 
 class CLI
     def self.run
+
         OptionParser.new do |parser| 
             parser.banner = "Usage: totaltime [options]"
 

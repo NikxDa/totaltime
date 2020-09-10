@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require "cli"
+require_relative "../lib/cli.rb"
 CLI.run

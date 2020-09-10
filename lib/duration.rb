@@ -1,3 +1,5 @@
+require "time"
+
 class Duration
     attr_accessor :hours, :minutes
 
@@ -20,6 +22,10 @@ class Duration
         Duration.new(newHours, newMinutes)
     end
 
+    def total_minutes()
+        return @hours * 60 + @minutes
+    end
+
     def self.try_convert(str)
         floatValue = Float(str, exception: false)
         if floatValue
@@ -31,20 +37,47 @@ class Duration
             return newDuration if newDuration.valid?
         end
 
-        parts=str.split(":")
-        return unless parts.length == 2
+        if str.include?("-")
+            times = str.split("-")
+            times.map! { |t|  t + (t.include?(":") ? "" : ":00") }
 
-        parsedHours = Integer(parts[0], exception: false)
-        parsedMinutes = Integer(parts[1], exception: false)
+            begin
+                startTime = Time.parse(times[0])
+                endTime = Time.parse(times[1])
+            rescue 
+                return
+            end
 
-        return if parsedMinutes == nil
-        parsedHours = 0 if parsedHours == nil
-        parsedHours = parsedHours + (parsedMinutes / 60)
+            minutesBetween = Integer((endTime - startTime) / 60, exception: false)
+            return unless minutesBetween != nil
 
-        parsedMinutes = parsedMinutes % 60
-        
-        newDuration = Duration.new(parsedHours, parsedMinutes)
-        if newDuration.valid? then newDuration else nil end
+            parsedHours = minutesBetween / 60
+            parsedMinutes = minutesBetween % 60
+
+            newDuration = Duration.new(parsedHours, parsedMinutes)
+            if newDuration.valid? then newDuration else nil end
+        else
+            parts=str.split(":")
+            return unless parts.length == 2
+    
+            parsedHours = Integer(parts[0], exception: false)
+            parsedMinutes = Integer(parts[1], exception: false)
+    
+            return if parsedMinutes == nil
+            parsedHours = 0 if parsedHours == nil
+            parsedHours = parsedHours + (parsedMinutes / 60)
+    
+            parsedMinutes = parsedMinutes % 60
+            
+            newDuration = Duration.new(parsedHours, parsedMinutes)
+            if newDuration.valid? then newDuration else nil end
+        end
+    end
+
+    def self.from_minutes(mins)
+        newMinutes = mins % 60
+        newHours = mins / 60
+        Duration.new(newHours, newMinutes)
     end
 
     def to_s
